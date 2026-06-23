@@ -1,0 +1,171 @@
+/*  全局重置  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*  固定背景图片  */
+body {
+    background-image: url("yun2.png");
+    background-size: cover;            /* 图片覆盖整个屏幕 */
+    background-position: center;       /* 居中显示 */
+    background-repeat: no-repeat;
+    background-attachment: fixed;      /* 关键！背景固定不随滚动移动 */
+    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+}
+/*  主内容区（滚动容器）*/
+.page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+/*  导航栏  */
+.nav-container {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+
+
+/* 隐藏菜单复选框（汉堡菜单用） */
+#menu-toggle {
+    display: none;
+}
+
+/* 汉堡图标，手机端显示 */
+.menu-icon {
+    display: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    z-index: 10;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* ========== 导航条 - 毛玻璃胶囊 ========== */
+.nav-bar {
+    /* 毛玻璃核心属性 */
+    background: rgba(255, 255, 255, 0.15);   /* 半透明白色底色 */
+    backdrop-filter: blur(15px);             /* 背景模糊 */
+    -webkit-backdrop-filter: blur(15px);     /* Safari兼容 */
+    
+    border-radius: 50px;                     /* 胶囊形 */
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.25); /* 细白边增加玻璃质感 */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    flex-wrap: wrap;
+    transition: all 0.3s ease;
+}
+
+/* 导航链接 */
+.nav-bar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s;
+    white-space: nowrap;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+/*光标悬停在按钮上效果*/
+.nav-bar a:hover {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(5px);
+}
+
+/* 当前激活状态 */
+.nav-bar a.active {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    text-shadow: none;
+}
+
+/* ========== 毛玻璃卡片 ========== */
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+.glass-card h2 {
+    margin-bottom: 15px;
+    font-size: 28px;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.glass-card p {
+    line-height: 1.7;
+    font-size: 16px;
+    opacity: 0.95;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.glass-card img {
+    width: 100%;
+    border-radius: 16px;
+    margin-top: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* ========== 手机端适配（屏幕宽度 ≤ 768px） ========== */
+@media screen and (max-width: 768px) {
+    /* 显示汉堡图标 */
+    .menu-icon {
+        display: block;
+    }
+
+    /* 把导航栏改成纵向排列，并默认隐藏 */
+    .nav-bar {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 20px;
+        padding: 10px;
+        gap: 2px;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 60px;
+    }
+
+    /* 当复选框被勾选时，展开导航栏 */
+    #menu-toggle:checked ~ .nav-bar {
+        max-height: 500px;
+        opacity: 1;
+        padding: 10px;
+        margin-top: 50px;
+    }
+
+    /* 菜单链接在手机端的样式调整 */
+    .nav-bar a {
+        text-align: center;
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .glass-card {
+        padding: 20px;
+    }
+}
